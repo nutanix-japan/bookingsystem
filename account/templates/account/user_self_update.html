@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>User Info</h1>
+
+<div class="row">
+  <div class="col"><span class='bookingmodal-left1'>User name : </span>{{ user.username }}</div>
+</div>
+<div class="row">
+  <div class="col"><span class='bookingmodal-left1'>Group name : </span>{{ group_name }}</div>
+</div>
+  
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-3">
+      {{ form.first_name|as_crispy_field }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      {{ form.last_name|as_crispy_field }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      {{ form.email|as_crispy_field }}
+    </div>
+  </div>
+  
+  <p><a href="{% url 'account_password_change' %}">Change user password</a></p>
+
+  <input type="button" class="btn btn-success" value="Cancel" onclick="location.href='{% url 'home' %}'"/>
+  <input type="submit" class="btn btn-success" value="Update"/>
+</form>
+
+{% endblock %}

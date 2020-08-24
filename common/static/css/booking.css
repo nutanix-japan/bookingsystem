@@ -1,0 +1,21 @@
+body {
+  font-family: "M PLUS 1p"; 
+}
+
+.red {
+  color: red;
+}
+
+.bookingmodal-left1 {
+    display: inline-block;
+    width: 150px;
+    /* border: solid 1px; */
+}
+
+.bookingmodal-note {
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  min-height: 100px;
+  margin-top: 5px;
+  padding: 2px;
+}

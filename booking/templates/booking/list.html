@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Active Bookings</h1>
+
+<div style="padding-top:20px">
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'booking_create' %}'">New Booking</button>
+</div>
+
+<div style="padding-top:20px">
+  <table class="table" >
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Asset</th>
+        <th>OwnerUser</th>
+        <th>OwnerGroup</th>
+        <th>From</th>
+        <th>Shipping</th>
+        <th>Return</th>
+        <th>To</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    {% for booking in object_list %}
+      <tr> 
+        <td><a href="{% url 'booking_detail' booking.pk %}">{{ booking.pk }}</a></td>
+        <td>{{ booking.asset.name }}</a></td>
+        <td>{{ booking.ownerUser.username }}</td>
+        <td>{{ booking.ownerGroup.name }}</td>
+        <td>{{ booking.fromDate|date:"Y-m-d" }}</td>
+        <td>{{ booking.shippingDate|date:"Y-m-d" }}</td>
+        <td>{{ booking.returnDate|date:"Y-m-d" }}</td>
+        <td>{{ booking.toDate|date:"Y-m-d" }}</td>
+        <td><a href="{% url 'booking_release' booking.pk %}">Release</a></td>
+        <td><a href="{% url 'booking_update' booking.pk %}">Update</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
+

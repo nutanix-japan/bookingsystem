@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 style="padding-top:20px">Asset List</h1>
+
+<div style="padding-top:20px">
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'asset_create' %}'">New Asset</button>
+</div>
+
+<div style="padding-top:20px">
+  <table class="table" >
+    <thead>
+      <tr>
+        <th></th>
+        <th>Model Number</th>
+        <th>Serial Number</th>
+        <th>Installation</th>
+        <th>Expiration</th>
+        <th>Active</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    {% for asset in object_list %}
+      <tr> 
+        <td><a href="{% url 'asset_detail' asset.pk %}">{{ asset.name }}</a></td>
+        <td>{{ asset.modelNumber }}</td>
+        <td>{{ asset.serialNumber }}</td>
+        <td>{{ asset.installationDate|date:"Y-m-d" }}</td>
+        <td>{{ asset.expirationDate|date:"Y-m-d" }}</td>
+        <td>{{ asset.active }}</td>
+        <td><a href="{% url 'asset_delete' asset.pk %}">Delete</a></td>
+        <td><a href="{% url 'asset_update' asset.pk %}">Edit</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}
+

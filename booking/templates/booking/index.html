@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 style="padding-top:20px">Booking Charts</h2>
+
+<div>
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'booking_create' %}'">New Booking</button>
+
+  <button type="button" class="btn btn-info float-right" onclick="click_next()">Next</button>
+  <button type="button" class="btn btn-info float-right" style="margin-right:5px" 
+    onclick="click_prev()">Prev</button>
+  <button type="button" class="btn btn-info float-right" style="margin-right:5px" 
+    onclick="click_thismonth()">This Month</button>
+</div>
+
+<div style="padding-top:20px; text-align:center">
+  <canvas id="canvas" width="1100px", height="300px" style="background-color:white; outline: lightgray 1px solid;">
+  You need a browser which supports html5 canvas.
+  </canvas>
+</div>
+
+<div class="modal fade" id="assetModal" tabindex="-1" role="dialog" 
+aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="assetModal_title">Asset details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <span class='bookingmodal-left1'>Name : </span>
+          <span id='assetmodal-name'></span>
+        </div>
+        <div>
+          <span class='bookingmodal-left1'>Model number : </span>
+          <span id='assetmodal-model'></span>
+        </div>
+        <div>
+          <span class='bookingmodal-left1'>Serial number : </span>
+          <span id='assetmodal-serial'></span>
+        </div>
+        <div>
+          <span class='bookingmodal-left1'>Installation Date : </span>
+          <span id='assetmodal-install'></span>
+        </div>
+        <div>
+          <span id='assetmodal-expiration2' class='bookingmodal-left1'>Expiration Date : </span>
+          <span id='assetmodal-expiration'></span>
+        </div>
+        <div>
+          <span class='bookingmodal-left1'>Active : </span>
+          <span id='assetmodal-active'></span>
+        </div>
+        <div style="padding-top: 20px">
+          Note
+          <pre class='bookingmodal-note' id='assetmodal-note'></pre>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="assetmodal-edit" onclick="">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" 
+aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bookingModal_title">Booking details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <span class='bookingmodal-left1'>Asset : </span>
+          <span id='bookingmodal-asset'></span>
+        </div>
+        <div>
+          <span class='bookingmodal-left1'>Booking User : </span>
+          <span id='bookingmodal-user'></span>
+        </div>
+        <div>
+          <span class='bookingmodal-left1'>Booking Group : </span>
+          <span id='bookingmodal-group'></span>
+        </div>
+        <div>
+          <span class='bookingmodal-left1'>Purpose : </span>
+          <span id='bookingmodal-purpose'></span>
+        </div>
+        <div>
+          <span class='bookingmodal-left1'>From Date : </span>
+          <span id='bookingmodal-fromdate'></span>
+        </div>
+        <div>
+          <span class='bookingmodal-left1'>Shipping Date : </span>
+          <span id='bookingmodal-shippingdate'></span>
+        </div>
+        <div>
+          <span class='bookingmodal-left1'>Return Date : </span>
+          <span id='bookingmodal-returndate'></span>
+        </div>
+        <div>
+          <span class='bookingmodal-left1'>To Date : </span>
+          <span id='bookingmodal-todate'></span>
+        </div>
+        <div style="padding-top: 20px">
+          Note
+          <pre class='bookingmodal-note' id='bookingmodal-note'></pre>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="bookingmodal-release" onclick="">Release</button>
+        <button type="button" class="btn btn-primary" id="bookingmodal-update" onclick="">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(function() {
+  page_index()
+});
+</script>
+
+
+{% endblock %}

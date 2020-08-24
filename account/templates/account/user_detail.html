@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1 style="padding-top:20px">User Detail : {{ object.name }}</h1>
+
+<div style="padding-top:20px">
+  <span class='bookingmodal-left1'>Username : </span>
+  <span id='assetmodal-name'>{{ object.username }}</span>
+</div>
+
+<div>
+  <span class='bookingmodal-left1'>Group name : </span>
+  <span id='assetmodal-serial'>{{ object.group.name }}</span>
+</div>
+
+<div>
+  <span class='bookingmodal-left1'>Active : </span>
+  <span id='assetmodal-serial'>{{ object.is_active }}</span>
+</div>
+
+<div>
+  <span class='bookingmodal-left1'>Staff : </span>
+  <span id='assetmodal-serial'>{{ object.is_staff }}</span>
+</div>
+
+<div>
+  <span class='bookingmodal-left1'>Administrator : </span>
+  <span id='assetmodal-serial'>{{ object.is_superuser }}</span>
+</div>
+
+<div>
+  <span class='bookingmodal-left1'>First name : </span>
+  <span id='assetmodal-model'>{{ object.first_name }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Last name : </span>
+  <span id='assetmodal-serial'>{{ object.last_name }}</span>
+</div>
+
+<div>
+  <span class='bookingmodal-left1'>Email : </span>
+  <span id='assetmodal-serial'>{{ object.email }}</span>
+</div>
+
+<div style="padding-top: 20px">
+  Note
+  <pre class='bookingmodal-note' id='assetmodal-note'>{{ object.note }}</pre>
+</div>
+
+<div style="padding-top:20px">
+  <button type="button" class="btn btn-success" onclick="location.href='{% url 'account_user_list' %}'">Back to list</button>
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'account_user_delete' object.pk %}'">Delete</button>
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'account_user_staff_update' object.pk %}'">Edit</button>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 style="padding-top:20px">Asset Detail : {{ object.name }}</h1>
+
+<div style="padding-top:20px">
+  <span class='bookingmodal-left1'>Name : </span>
+  <span id='assetmodal-name'>{{ object.name }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Model number : </span>
+  <span id='assetmodal-model'>{{ object.modelNumber }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Serial number : </span>
+  <span id='assetmodal-serial'>{{ object.serialNumber }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Installation Date : </span>
+  <span id='assetmodal-install'>{{ object.installationDate|date:"Y-m-d" }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Expiration Date : </span>
+  <span id='assetmodal-expiration'>{{ object.expirationDate|date:"Y-m-d" }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Active : </span>
+  <span id='assetmodal-expiration'>{{ object.is_active }}</span>
+</div>
+<div style="padding-top: 20px">
+  Note
+  <pre class='bookingmodal-note' id='assetmodal-note'>{{ object.note }}</pre>
+</div>
+
+<div style="padding-top:20px">
+  <button type="button" class="btn btn-success" onclick="location.href='{% url 'asset_list' %}'">Back to list</button>
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'asset_delete' object.pk %}'">Delete</button>
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'asset_update' object.pk %}'">Edit</button>
+</div>
+
+{% endblock %}
+

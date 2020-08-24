@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1 style="padding-top:20px">Edit Asset : {{ object.name }}</h1>
+<form action="" method="post">
+  
+  {% csrf_token %}
+
+  <div class="row">
+    <div class="col-3">
+      {{ form.name|as_crispy_field }}
+    </div>
+    <div class="col-3">
+      {{ form.modelNumber|as_crispy_field }}
+    </div>
+    <div class="col-3">
+      {{ form.serialNumber|as_crispy_field }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      {{ form.installationDate|as_crispy_field }}
+    </div>
+    <div class="col-3">
+      {{ form.expirationDate|as_crispy_field }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      {{ form.is_active|as_crispy_field }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      {{ form.note|as_crispy_field }}
+    </div>
+  </div>
+  
+  <input type="button" class="btn btn-success" value="Cancel" onclick="location.href='{% url 'asset_list' %}'"/>
+  <input type="submit" class="btn btn-success" value="Save"/>
+</form>
+
+<script>
+$(function() {
+  page_create()
+});
+</script>
+
+{% endblock %}
+

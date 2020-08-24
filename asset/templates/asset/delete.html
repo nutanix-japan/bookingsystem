@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Delete Asset : {{ object.name }}</h1>
+<form action="" method="post">
+  {% csrf_token %}
+  <p>Are you sure you want to delete "{{ object.name }}" ?
+    <br>All bookings which use it are deleted.</p>
+
+  <input type="button" class="btn btn-success" value="Cancel" onclick="location.href='{% url 'asset_list' %}'"/>
+  <input type="submit" class="btn btn-success" value="Delete" />
+</form>
+
+{% endblock %}
+

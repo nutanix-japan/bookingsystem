@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 style="padding-top:20px">Booking Detail : {{ object.pk }}</h1>
+
+<div style="padding-top:20px">
+  <span class='bookingmodal-left1'>Asset Name : </span>
+  <span id='assetmodal-name'>{{ object.asset.name }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Owner User : </span>
+  <span id='assetmodal-model'>{{ object.ownerUser.username }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Owner Group : </span>
+  <span id='assetmodal-serial'>{{ object.ownerGroup.name }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>From Date : </span>
+  <span id='assetmodal-install'>{{ object.fromDate|date:"Y-m-d" }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Shipping Date : </span>
+  <span id='assetmodal-expiration'>{{ object.shippingDate|date:"Y-m-d" }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Return Date : </span>
+  <span id='assetmodal-install'>{{ object.fromDate|date:"Y-m-d" }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>To Date : </span>
+  <span id='assetmodal-expiration'>{{ object.toDate|date:"Y-m-d" }}</span>
+</div>
+<div style="padding-top: 20px">
+  Note
+  <pre class='bookingmodal-note' id='assetmodal-note'>{{ object.note }}</pre>
+</div>
+
+<div style="padding-top:20px">
+  <button type="button" class="btn btn-success" onclick="location.href='{% url 'booking_list' %}'">Back to list</button>
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'booking_release' object.pk %}'">Release</button>
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'booking_update' object.pk %}'">Update</button>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 style="padding-top:20px">User List (Staff Only)</h1>
+
+<div style="padding-top:20px">
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'account_user_create' %}'">New User</button>
+</div>
+
+<div style="padding-top:20px">
+  <table class="table" >
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Group</th>
+        <th>Active</th>
+        <th>Staff</th>
+        <th>Administrator</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    {% for user in object_list %}
+      <tr> 
+        <td><a href="{% url 'account_user_detail' user.pk %}">{{ user.username }}</a></td>
+        <td>{{ user.group }}</td>
+        <td>{{ user.is_active }}</td>
+        <td>{{ user.is_staff }}</td>
+        <td>{{ user.is_superuser }}</td>
+
+        {% if user.is_superuser %}
+        <td></td>
+        <td></td>
+        <td></td>
+        {% else %}
+        <td><a href="{% url 'account_user_delete' user.pk %}">Delete</a></td>
+        <td><a href="{% url 'account_user_password_reset' user.pk %}">Password Reset</a></td>
+        <td><a href="{% url 'account_user_staff_update' user.pk %}">Edit</a></td>
+        {% endif %}
+
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>Edit User</h1>
+<form action="" method="post">
+  
+  {% csrf_token %}
+
+  <div class="row">
+    <div class="col-3">
+      {{ form.username|as_crispy_field }}
+    </div>
+    <div class="col-3">
+      {{ form.group|as_crispy_field }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      {{ form.email|as_crispy_field }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      {{ form.is_active|as_crispy_field }}
+    </div>
+  </div>
+
+  {% if request.user.is_superuser %}
+  <div class="row">
+    <div class="col-3">
+      {{ form.is_staff|as_crispy_field }}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="row">
+    <div class="col-12">
+      {{ form.note|as_crispy_field }}
+    </div>
+  </div>
+  
+  <input type="button" class="btn btn-success" value="Cancel" onclick="location.href='{% url 'account_user_list' %}'"/>
+  <input type="submit" class="btn btn-success" value="Save"/>
+</form>
+
+<script>
+$(function() {
+  page_create()
+});
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 style="padding-top:20px">Group List</h1>
+
+<div style="padding-top:20px">
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'account_group_create' %}'">New Group</button>
+</div>
+
+<div style="padding-top:20px">
+  <table class="table" >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Background Color</th>
+        <th>Text Color</th>
+        <th>Sample Text</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    {% for group in object_list %}
+      <tr> 
+        <td><a href="{% url 'account_group_detail' group.pk %}">{{ group.name }}</a></td>
+        <td>{{ group.backgroundColor }}</td>
+        <td>{{ group.textColor }}</td>
+        <td><div style="background-color:{{ group.backgroundColor }}; color:{{ group.textColor }}; text-align:center;">Hello</div></td>
+        <td><a href="{% url 'account_group_delete' group.pk %}">Delete</a></td>
+        <td><a href="{% url 'account_group_update' group.pk %}">Edit</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
+

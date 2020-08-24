@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>New Group</h1>
+<form action="" method="post">
+  
+  {% csrf_token %}
+
+  <div class="row">
+    <div class="col-3">
+      {{ form.name|as_crispy_field }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      {{ form.backgroundColor|as_crispy_field }}
+    </div>
+    <div class="col-3">
+      {{ form.textColor|as_crispy_field }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      {{ form.note|as_crispy_field }}
+    </div>
+  </div>
+  
+  <input type="button" class="btn btn-success" value="Cancel" onclick="location.href='{% url 'account_group_list' %}'"/>
+  <input type="submit" class="btn btn-success" value="Save"/>
+</form>
+
+<script>
+$(function() {
+  page_create()
+});
+</script>
+
+{% endblock %}
+

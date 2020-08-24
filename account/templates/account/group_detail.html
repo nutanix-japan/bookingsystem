@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1 style="padding-top:20px">Group Detail : {{ object.name }}</h1>
+
+<div style="padding-top:20px">
+  <span class='bookingmodal-left1'>Name : </span>
+  <span id='assetmodal-name'>{{ object.name }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Background Color : </span>
+  <span id='assetmodal-model'>{{ object.backgroundColor }}</span>
+</div>
+<div>
+  <span class='bookingmodal-left1'>Text Color : </span>
+  <span id='assetmodal-serial'>{{ object.textColor }}</span>
+</div>
+
+<div style="padding-top: 20px">
+  Note
+  <pre class='bookingmodal-note' id='assetmodal-note'>{{ object.note }}</pre>
+</div>
+
+<div style="padding-top:20px">
+  <button type="button" class="btn btn-success" onclick="location.href='{% url 'account_group_list' %}'">Back to list</button>
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'account_group_delete' object.pk %}'">Delete</button>
+  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'account_group_update' object.pk %}'">Edit</button>
+</div>
+
+{% endblock %}
+

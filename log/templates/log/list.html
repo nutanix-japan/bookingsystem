@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 style="padding-top:20px">Logs</h1>
+
+<ul class="list-unstyled" style="font-family: monospace">
+{% for log in object_list %}
+  <li>{{ log.timestamp|date:"Y-m-d H:i:s" }} {{ log.message }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
